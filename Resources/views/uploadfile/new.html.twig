@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
+
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col col-lg-9  ">
+            <h1>UploadFile creation</h1>
+            {#{{ form_start(form) }}#}
+            {#{{ form_widget(form.name, { 'attr': {'class': 'hidden'} }) }}#}
+            {#{{ form_rest(form) }}#}
+            {#<input type="submit" value="Create" class="btn btn-bg btn-default" style="margin-top: 10px;"/>#}
+            {#{{ form_end(form) }}#}
+
+            {#<div id="fileuploader">Upload</div>#}
+            <div id="eventsupload">Upload</div>
+
+
+        </div>
+
+
+        <div class="col col-lg-3">
+            <div class="row">
+                <h1>Action</h1>
+                <a href="{{ path('uploadfile_index') }}" class="btn btn-bg btn-default btn-block">Voir la liste des upload</a>
+
+        </div>
+    </div>
+{% endblock %}
+
+    {% block javascripts %}
+        <script src=" {{ asset('bundles/asset/js/jquery.min.js') }}"></script>
+
+        {{ parent() }}
+        <script src=" {{ asset('bundles/asset/js/jquery.uploadfile.min.js') }}"></script>
+
+        <script type="text/javascript">
+
+
+            $(document).ready(function () {
+
+                // Methode qui valide le formaulaire d'ajout des fichiers
+                $("#eventsupload").uploadFile({
+                    url: "{{ path('uploadfile_json_new') }}",
+                    method: "POST",
+                    fileName: "file",
+                    enctype: "multipart/form-data",
+                    multiple: true,
+                    dragDrop: true,
+                    maxFileCount: 100,
+                    showDownload: true
+
+                });
+            });
+
+
+        </script>
+    {% endblock %}

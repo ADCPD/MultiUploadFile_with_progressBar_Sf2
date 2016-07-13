@@ -1,0 +1,29 @@
+uploadfile_index:
+    path:     /list_upload
+    defaults: { _controller: "ProgressAssetBundle:UploadFile:index" }
+    methods:  GET
+
+uploadfile_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProgressAssetBundle:UploadFile:show" }
+    methods:  GET
+
+uploadfile_json_new:
+    path:     /jsonUpload
+    defaults: { _controller: "ProgressAssetBundle:UploadFile:jsonRequestForm" }
+    methods:  POST
+
+uploadfile_new:
+    path:     /
+    defaults: { _controller: "ProgressAssetBundle:UploadFile:new" }
+    methods:  [GET, POST]
+#
+#uploadfile_edit:
+#    path:     /{id}/edit
+#    defaults: { _controller: "ProgressAssetBundle:UploadFile:edit" }
+#    methods:  [GET, POST]
+
+uploadfile_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProgressAssetBundle:UploadFile:delete" }
+    methods:  DELETE

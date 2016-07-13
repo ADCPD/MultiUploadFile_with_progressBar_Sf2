@@ -1,0 +1,11 @@
+progress_asset_document_uploaded:
+    resource: "@ProgressAssetBundle/Resources/config/routing/document.yml"
+    prefix:   /document_uploaded
+
+progress_asset_file_uploaded:
+    resource: "@ProgressAssetBundle/Resources/config/routing/uploadfile.yml"
+    prefix:   /file_uploaded
+
+#progress_asset_homepage:
+#    path:     /
+#    defaults: { _controller: ProgressAssetBundle:Default:index }
