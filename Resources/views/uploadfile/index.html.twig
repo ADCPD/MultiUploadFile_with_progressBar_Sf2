@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col col-lg-9">
+            <h1>UploadFile list</h1>
+
+            <table class="table ">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Path</th>
+                    <th>Taille</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for uploadFile in uploadFiles %}
+                    <tr>
+
+                        <td>{{ uploadFile.name }}</td>
+                        <td>{{ uploadFile.dateUpload|date("d/m/Y H:i:s") }}</td>
+                        <td>{{ uploadFile.path }}</td>
+                        <td>{{ uploadFile.fileSize }}</td>
+                        <td>
+
+                            <div style=" float: right;">
+                                <a href="{{ path('uploadfile_show', { 'id': uploadFile.id }) }}"
+                                   class="btn btn-bg btn-default">Visualiser</a>
+
+                                <a href="{{ asset(uploadFile.webPath) }}"
+                                   class="btn btn-bg btn-default">
+                                    <i class="fa fa-download " aria-hidden="true"></i>
+                                    Télécharger
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col col-lg-3">
+            <h1>Action : </h1>
+            <a href="{{ path('uploadfile_new') }}" class="btn btn-bg btn-default">Charger nouveau fichier </a>
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript"
+            src="{{ asset('//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('Table').DataTable({
+                "pagingType": "full_numbers"
+            });
+
+        });
+    </script>
+{% endblock %}

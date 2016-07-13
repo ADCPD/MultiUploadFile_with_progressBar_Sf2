@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/progressasset/css/bootstrap.min.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="row">
+
+        <div class="col col-sm-9">
+            <h1>Fiche file :</h1>
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Upload date</th>
+                    <th>taille fichier</th>
+                    <th>Path</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ uploadFile.name }}</td>
+                    <td>{{ uploadFile.dateUpload|date('d/m/Y H:i:s') }}</td>
+                    <td>{{ uploadFile.fileSize }}</td>
+                    <td>{{ uploadFile.path }}</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col col-sm-3">
+            <h1>Action : </h1>
+
+            <a href="{{ path('uploadfile_index') }}" class="btn btn-block btn-default">Retour à la liste</a>
+
+            {#<a href="{{ path('uploadfile_edit', { 'id': uploadFile.id }) }}" class="btn btn-block btn-default">Edit</a>#}
+
+
+            <!-- Small modal -->
+            <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                    data-target=".bs-example-modal-sm"> Effacer
+            </button>
+            <!-- Modal -->
+            <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel"> Etes-vous sure de vouloir supprimer,
+                                <abbr title="attribute">{{ uploadFile.name }}</abbr>
+                                ?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col col-sm-9">
+                                {{ form_start(delete_form) }}
+                                <input type="submit" value="Effacer" class="btn btn-danger btn-block">
+                                {{ form_end(delete_form) }}
+                            </div>
+                            <div class="col col-sm-3">
+                                <button type="button" class="btn btn-default btn-block " data-dismiss="modal">Fermer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/progressasset/js/jquery.min.js') }}"></script>
+    <script type="text/javascript">
+        $('#myModal').modal({
+            keyboard: false
+        })
+
+    </script>
+    {{ parent() }}
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+document_uploaded_index:
+    path:     /
+    defaults: { _controller: "ProgressAssetBundle:Document:index" }
+    methods:  GET
+
+document_uploaded_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProgressAssetBundle:Document:show" }
+    methods:  GET
+
+document_uploaded_new:
+    path:     /new
+    defaults: { _controller: "ProgressAssetBundle:Document:new" }
+    methods:  [GET, POST]
+
+document_uploaded_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProgressAssetBundle:Document:edit" }
+    methods:  [GET, POST]
+
+document_uploaded_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProgressAssetBundle:Document:delete" }
+    methods:  DELETE
